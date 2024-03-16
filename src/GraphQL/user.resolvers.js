@@ -4,21 +4,29 @@ const bcrypt = require("bcryptjs");
 
 const userResolvers = {
     Mutation: {
+
         registerUser: async (_, { name, email, username, password }) => {
             try {
                 const existingUser = await User.findOne({ email });
 
                 if (existingUser) {
-                    return { message: 'Email already registered' };
+                    return { message: 'Try again with different email' };
                 }
 
-                const hashedPassword = await bcrypt.hash(password, 10);
+                const hashedPassword = await bcrypt.hash(password, 8);
+
+
                 const newUser = new User({ name, email, username, password: hashedPassword });
+
                 await newUser.save();
 
+
+
                 const token = jwt.sign({ id: newUser._id }, process.env.SECRET_KEY);
-                return { user: newUser, message: 'User registered successfully', accessToken: token };
+
+                return { user: newUser, message: 'Registration successfull', accessToken: token };
             } catch (error) {
+                
                 throw new Error('Failed to save user: ' + error.message);
             }
         },

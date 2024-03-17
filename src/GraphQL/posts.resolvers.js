@@ -8,6 +8,7 @@ const Post = require('../models/post.model');
 
 
 const postResolvers = {
+  
   Query: {
     getUserPosts: async (_, __, { req }) => {
       try {
@@ -38,7 +39,8 @@ const postResolvers = {
       try {
         const token = req.headers.authorization?.split(" ")[1];
         if (!token) {
-          throw new Error("Token not provided.");
+          throw new Error("NO token found");
+
         }
         const decoded = jwt.verify(token, process.env.SECRET_KEY);
         if (!decoded) {
@@ -50,8 +52,8 @@ const postResolvers = {
         await newPost.save();
         return newPost;
       } catch (error) {
-        console.error('Error creating post:', error);
-        throw new Error("Failed to create post. Please try again.");
+        console.error('Error while creating post:', error);
+        throw new Error("Failed . Please try again.");
       }
     },
   },

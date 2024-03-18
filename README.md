@@ -12,19 +12,18 @@ JWT Token Management: Generate and validate JWT tokens to manage user sessions s
 
 
 *Folder Structure*
-src/
-    configs/
-            db.js: MongoDB connection.
-    models/
-            user.model.js: Mongoose model for users.
-            post.model.js: Mongoose model for posts.
-    GraphQL/
-            user.typeDefs.js: GraphQL type definitions for user operations.
-            user.resolvers.js: Resolvers for user operations.
-            posts.typeDefs.js: GraphQL type definitions for post operations.
-            posts.resolvers.js: Resolvers for post operations.
-   
-  index.js: Server homepage.
+
+├── ...  
+├── src                    
+│   ├── configs/├── db.js MongoDB connection.  
+│  
+│   ├── models/ ├──  user.model.js: Mongoose model for users.     
+│               └──  user.model.js: Mongoose model for users.  
+│   └── GraphQL/├──  user.typeDefs.js: GraphQL type definitions for user operations.    
+│               ├──  user.resolvers.js: Resolvers for user operations.    
+│               ├──  posts.typeDefs.js: GraphQL type definitions for post operations.    
+│               └──  posts.resolvers.js: Resolvers for post operations                
+└── index.js : Server homepage.  
 
 *Database Integration:*
 MongoDB: Store posts and user information efficiently using MongoDB.
